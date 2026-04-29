@@ -1,7 +1,9 @@
 #include <Arduino.h>
 #include "ArduinoJson.h"
-#include <WiFi.h>
-#include <ArduinoOTA.h>
+#include "OTAManager.h"
+
+// Objeto global para manejar OTA y WiFi
+OTAManager ota;
 
 // Credenciales de la red WiFi a la que se conectara el ESP32.
 const char* ssid = "Delga_2.4";
@@ -20,22 +22,12 @@ void setup() {
   // Pequeña espera para que el monitor serial alcance a conectarse.
   delay(1000);
 
-  // Modo estacion: el ESP32 se conecta a un router WiFi.
-  WiFi.mode(WIFI_STA);
-  // Aplica la IP estatica definida arriba.
-  WiFi.config(kLocalIp, kGatewayIp, kSubnetMask, kPrimaryDns);
-  // Intenta conectarse a la red WiFi.
-  WiFi.begin(ssid, password);
-
-  // Espera hasta que haya conexion. Si falla, reinicia y vuelve a intentar.
-  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    delay(5000);
-    ESP.restart();
-  }
+  // Conectar a WiFi con IP estatica usando la libreria
+  ota.connect(ssid, password, kLocalIp, kGatewayIp, kSubnetMask, kPrimaryDns);
 
   // Activa OTA: permite cargar nuevo firmware por WiFi sin cable USB.
-  ArduinoOTA.begin();
-  Serial.println("OTA inicializado. IP: " + WiFi.localIP().toString());
+  ota.begin();
+  Serial.println("OTA inicializado. IP: " + ota.getLocalIP().toString());
 
   // Cadena JSON de ejemplo que vamos a leer.
   String inputJson = "{\"device\": \"Nodo001\", \"status\": \"active\"}";
@@ -90,6 +82,6 @@ void setup() {
 
 void loop() {
   // Debe ejecutarse continuamente para atender solicitudes OTA.
-  ArduinoOTA.handle();
+  ota.handle();
   
 }

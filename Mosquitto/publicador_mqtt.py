@@ -7,9 +7,17 @@ import paho.mqtt.client as mqtt
 # CONFIGURACIÓN DEL BROKER
 # ==============================
 
-BROKER = "localhost"  # Cambia esta IP por la IP del computador donde está Mosquitto
+# Selecciona la dirección del broker MQTT
+BROKER = "broker.emqx.io"
+# BROKER = "mqtt.eclipseprojects.io"  
+# BROKER = "broker.hivemq.com"
+# BROKER = "mqtt.coreflux.org"
+
+#ip del broker en la red local
+# BROKER = "192.168.1.4" 
+
 PUERTO = 1883
-TOPIC = "test-topic/master"  # Topic donde se publicarán los datos
+TOPIC = "test-topic/to-esp32"  # Topic donde se publicarán los datos
 
 # ==============================
 # CREACIÓN DEL CLIENTE MQTT
@@ -39,7 +47,7 @@ try:
 
         # Mensaje en formato JSON
         mensaje = {
-            "comando": "LED_OFF"
+            "estado": "LED_OFF"          
         }
 
         # Convertir diccionario Python a texto JSON

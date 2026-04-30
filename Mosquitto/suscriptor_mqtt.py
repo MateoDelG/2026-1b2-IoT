@@ -4,9 +4,17 @@ import paho.mqtt.client as mqtt
 # CONFIGURACIÓN DEL BROKER
 # ==============================
 
-BROKER = "localhost"  # Cambia esta IP por la IP del computador donde está Mosquitto
+# Selecciona la dirección del broker MQTT
+BROKER = "broker.emqx.io"
+# BROKER = "mqtt.eclipseprojects.io"  
+# BROKER = "broker.hivemq.com"
+# BROKER = "mqtt.coreflux.org"
+
+#ip del broker en la red local
+# BROKER = "192.168.1.4" 
+
 PUERTO = 1883
-TOPIC = "test-topic/sensor"  # Topic al que se suscribirá el cliente
+TOPIC = "test-topic/from-esp32"  # Topic al que se suscribirá el cliente
 
 # ==============================
 # FUNCIÓN CUANDO EL CLIENTE SE CONECTA

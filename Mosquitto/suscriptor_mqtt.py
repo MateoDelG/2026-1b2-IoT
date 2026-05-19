@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 # ==============================
 
 # Selecciona la dirección del broker MQTT
-BROKER = "broker.emqx.io"
+BROKER = "192.168.1.2"
 # BROKER = "mqtt.eclipseprojects.io"  
 # BROKER = "broker.hivemq.com"
 # BROKER = "mqtt.coreflux.org"
@@ -14,7 +14,7 @@ BROKER = "broker.emqx.io"
 # BROKER = "192.168.1.4" 
 
 PUERTO = 1883
-TOPIC = "test-topic/from-esp32"  # Topic al que se suscribirá el cliente
+TOPIC = "iot/nodes"  # Topic al que se suscribirá el cliente
 
 # ==============================
 # FUNCIÓN CUANDO EL CLIENTE SE CONECTA

@@ -130,10 +130,17 @@ Cuando Mosquitto se ejecuta como servicio en Windows, normalmente usa el archivo
 C:\Program Files\mosquitto\mosquitto.conf
 ```
 
-Abre el archivo con Bloc de notas como administrador:
+Ejecuta en powershell como administrador
 
 ```powershell
-notepad "C:\Program Files\mosquitto\mosquitto.conf"
+cd "C:\Program Files\mosquitto"
+
+@'
+listener 1883
+allow_anonymous true
+connection_messages true
+log_type all
+'@ | Out-File -FilePath .\clase.conf -Encoding ascii
 ```
 
 Borra o comenta el contenido anterior y deja la siguiente configuración básica:

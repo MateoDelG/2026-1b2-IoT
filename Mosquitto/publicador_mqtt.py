@@ -17,7 +17,7 @@ BROKER = "broker.emqx.io"
 # BROKER = "192.168.1.4" 
 
 PUERTO = 1883
-TOPIC = "test-topic/to-esp32"  # Topic donde se publicarán los datos
+TOPIC = "iot/nodes"  # Topic donde se publicarán los datos
 
 # ==============================
 # CREACIÓN DEL CLIENTE MQTT
